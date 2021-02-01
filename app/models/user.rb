@@ -5,7 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable, :confirmable
 
-  enum role: [:guest, :admin], _default: :guest
+  enum role: {
+    guest: 0,
+    admin: 1
+  }, _default: :guest
 
   has_many :orders, class_name: 'Order', inverse_of: :orderer, dependent: :destroy
+
+  #this method is called by devise to check for "active" state of the model
+  def active_for_authentication?
+    super and self.admin?
+  end
 end

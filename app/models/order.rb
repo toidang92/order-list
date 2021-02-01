@@ -1,5 +1,12 @@
 class Order < ApplicationRecord
-  enum status: [:order_new, :processing, :payment, :shipped, :cancel, :complete], _default: :order_new
+  enum status: {
+    order_new:  0,
+    processing: 1,
+    payment:    2,
+    shipped:    3,
+    cancelled:  4,
+    completed:  5,
+  }, _default: :order_new
 
   belongs_to :orderer, class_name: 'User', inverse_of: :orders
   has_many :order_lines, dependent: :delete_all
