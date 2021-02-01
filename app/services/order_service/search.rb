@@ -1,4 +1,4 @@
 module OrderService
-  class UpdateStatus
+  class Search
   end
 end

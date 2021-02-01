@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  app:
+    tty: true
+    stdin_open: true
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    command: sh ./docker/scripts/start.sh
+    volumes:
+      - ./:/var/www
+      - ./docker/app/bundle:/bundle
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+
+  db:
+    container_name: postgres_container
+    image: postgres:12.5
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-123123}
+      PGDATA: /data/postgres
+    volumes:
+      - ./docker/postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+  redis:
+    container_name: redis_container
+    image: redis:6.0.10
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./docker/redis/data:/data
+    ports:
+      - "6379:6379"
+
+  mail:
+    image: schickling/mailcatcher:latest
+    ports:
+      - '1080:1080'
