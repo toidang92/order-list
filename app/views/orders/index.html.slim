@@ -1,0 +1,29 @@
+h1.mb-4 Orders
+
+table.table.table-striped.table-bordered
+  thead
+    tr
+      th Order
+      th Status
+      th Total price
+      th width="200"
+
+  tbody
+    - if @orders.present?
+      - @orders.each do |order|
+        tr
+          td= order.order_id
+          td= order.status
+          td= order.total_price
+          td
+            .btn-group role="group" aria-label="Actions"
+              = link_to 'Show', order, class: 'btn btn-primary btn-sm'
+              = link_to 'Edit', edit_order_path(order), class: 'btn btn-success btn-sm'
+    - else
+      tr
+        td colspan="4"
+          | Not found records.
+
+br
+
+= link_to 'New Order', new_order_path, class: 'btn btn-primary'

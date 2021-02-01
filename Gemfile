@@ -7,11 +7,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-git_source(:bitbucket) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://bitbucket.com/#{repo_name}.git"
-end
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.1'
 
@@ -19,7 +14,10 @@ gem 'pg', '>= 0.18', '< 2.0'
 
 gem 'puma', '~> 5.1'
 
+gem 'sprockets', '~> 3.7.2'
 gem 'sass-rails', '>= 6'
+
+gem 'slim-rails'
 
 gem 'react-rails'
 gem 'webpacker', '~> 5.2'
@@ -47,6 +45,13 @@ gem 'redis', require: ['redis', 'redis/connection/hiredis']
 gem 'redis-rails'
 
 gem 'exception_notification'
+
+gem 'sidekiq'
+
+gem 'devise'
+gem 'devise-async'
+
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

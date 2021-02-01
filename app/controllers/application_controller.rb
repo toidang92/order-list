@@ -1,5 +1,9 @@
-class ApplicationController < Spina::ApplicationController
+class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+
+  # Inside your protected controller
+  before_action :authenticate_user!
+
 
   include ErrorRenders
 

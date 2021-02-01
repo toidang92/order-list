@@ -1,6 +1,4 @@
-p#notice= notice
-
-h1 <%= plural_table_name.titleize %>
+h1.mb-4 <%= plural_table_name.titleize %>
 
 table.table.table-striped.table-bordered
   thead

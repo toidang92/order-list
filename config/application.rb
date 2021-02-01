@@ -32,22 +32,23 @@ module Cv
     end
 
     # Auto-load the bot and its subdirectories
-    config.eager_load_paths += Dir[Rails.root.join('lib', 'utils')]
-    config.eager_load_paths += Dir[Rails.root.join('app', 'services')]
+    config.enable_dependency_loading = true
+    config.autoload_paths += %W(
+      #{config.root}/lib/utils
+      #{config.root}/lib/plugins
+      #{config.root}/app/services
+    )
 
     config.to_prepare do
-      # Load application's model / class decorators
-      Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator.rb")) do |c|
-        Rails.configuration.cache_classes ? require(c) : load(c)
-      end
-
-      Dir.glob(File.join(File.dirname(__FILE__), "../app/schedules/*_scheduler.rb")) do |c|
-        Rails.configuration.cache_classes ? require(c) : load(c)
-      end
+      Devise::SessionsController.layout 'devise'
+      Devise::RegistrationsController.layout proc { |_| user_signed_in? ? 'application' : 'devise' }
+      Devise::ConfirmationsController.layout 'devise'
+      Devise::UnlocksController.layout 'devise'
+      Devise::PasswordsController.layout 'devise'
     end
 
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    config.load_defaults 6.1
     config.autoloader = :zeitwerk #:classic
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -57,8 +58,8 @@ module Cv
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.i18n.default_locale = :vi
-    config.i18n.available_locales = [:vi, :en]
+    config.i18n.default_locale = :en
+    config.i18n.available_locales = [:en]
     config.i18n.fallbacks = [:en]
 
     # Use a real queuing backend for Active Job (and separate queues per environment)
@@ -70,12 +71,8 @@ module Cv
 
     config.middleware.delete Rack::Runtime
 
-    config.serviceworker.headers['Service-Worker-Allowed'] = '/'
-
     config.encoding = 'utf-8'
 
     config.time_zone = 'Bangkok'
-
-    config.serviceworker.icon_sizes = [36, 72, 128, 256]
   end
 end

@@ -1,11 +1,5 @@
 /! Sidebar
 #sidebar-wrapper.bg-light.border-right
-  .sidebar-heading HR FB
+  .sidebar-heading Order management
   .list-group.list-group-flush
-    = link_to 'Pages', pages_path, class: 'list-group-item list-group-item-action bg-light'
-    = link_to 'Accounts', accounts_path, class: 'list-group-item list-group-item-action bg-light'
-    = link_to 'Messages', messages_path, class: 'list-group-item list-group-item-action bg-light'
-    = link_to 'Candidates', candidates_path, class: 'list-group-item list-group-item-action bg-light'
-    = link_to 'Interview schedules', interview_schedules_path, class: 'list-group-item list-group-item-action bg-light'
-    = link_to 'Candidate salaries', candidate_salaries_path, class: 'list-group-item list-group-item-action bg-light'
-    = link_to 'Industries', industries_path, class: 'list-group-item list-group-item-action bg-light'
+    = nav_link 'Orders', orders_path, { class: 'list-group-item list-group-item-action' } , { controller_segment: 1 }

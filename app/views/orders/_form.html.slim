@@ -1,0 +1,10 @@
+= simple_form_for(order, wrapper: :horizontal_form) do |f|
+  = render 'layouts/shared/notifications', f: f, object: f.object
+
+  .form-inputs
+    = f.input :order_id, as: :string
+    = f.input :status, as: :string
+    = f.input :total_price, as: :string
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'

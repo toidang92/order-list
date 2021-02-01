@@ -1,4 +1,6 @@
-p#notice= notice
+h1.mb-4
+  | <%= singular_table_name.titleize %>#
+  = @<%= singular_table_name %>.id
 
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
 p
@@ -6,8 +8,5 @@ p
   = @<%= singular_table_name %>.<%= attribute.name %>
 <% end -%>
 
-= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-success'
-
-br
-
+= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-success mr-2'
 = link_to 'Back', <%= index_helper %>_path, class: 'btn btn-info'

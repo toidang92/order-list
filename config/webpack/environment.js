@@ -1,14 +1,15 @@
-const { environment } = require("@rails/webpacker")
-const Webpack = require("webpack")
+const { environment } = require("@rails/webpacker");
+const Webpack = require("webpack");
 
-environment.loaders.append("jQuery", {
-  test: require.resolve("jQuery"),
-  use: [
-    {
-      loader: "expose-loader",
-      options: "$",
+environment.loaders.append("jquery", {
+  test: require.resolve("jquery"),
+  loader: "expose-loader",
+  options: {
+    exposes: {
+      globalName: "$",
+      override: true,
     },
-  ],
-})
+  }
+});
 
 module.exports = environment
