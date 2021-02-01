@@ -3,27 +3,28 @@ h1.mb-4 Orders
 table.table.table-striped.table-bordered
   thead
     tr
+      th User
       th Order
       th Status
-      th Total price
+      th Payment amount
+      th Order line count
       th width="200"
 
   tbody
     - if @orders.present?
       - @orders.each do |order|
         tr
+          td= order.user
           td= order.order_id
           td= order.status
-          td= order.total_price
+          td= order.payment_amount
+          td= order.order_line_count
           td
             .btn-group role="group" aria-label="Actions"
               = link_to 'Show', order, class: 'btn btn-primary btn-sm'
               = link_to 'Edit', edit_order_path(order), class: 'btn btn-success btn-sm'
+              = link_to 'Destroy', order, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' }
     - else
       tr
-        td colspan="4"
+        td colspan="6"
           | Not found records.
-
-br
-
-= link_to 'New Order', new_order_path, class: 'btn btn-primary'

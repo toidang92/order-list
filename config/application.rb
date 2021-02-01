@@ -58,9 +58,14 @@ module Cv
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.i18n.default_locale = :en
+    # Configure the default encoding used in templates for Ruby 1.9.
+    config.time_zone = 'Bangkok'
     config.i18n.available_locales = [:en]
-    config.i18n.fallbacks = [:en]
+    config.i18n.default_locale = :en
+
+    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+    config.encoding = 'utf-8'
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**/*.{rb,yml}').to_s]
 
     # Use a real queuing backend for Active Job (and separate queues per environment)
     config.active_job.queue_adapter = :sidekiq
@@ -70,9 +75,5 @@ module Cv
     config.active_storage.routes_prefix = '/as_uploads'
 
     config.middleware.delete Rack::Runtime
-
-    config.encoding = 'utf-8'
-
-    config.time_zone = 'Bangkok'
   end
 end

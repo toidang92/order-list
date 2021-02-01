@@ -10,17 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_01_125703) do
+ActiveRecord::Schema.define(version: 2021_02_01_134729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "orders", force: :cascade do |t|
-    t.string "order_id"
-    t.string "status"
-    t.string "total_price"
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "product_id"
+    t.float "price", default: 0.0, null: false
+    t.integer "amount", default: 0, null: false
+    t.float "payment_amount", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id", "product_id"], name: "index_order_items_on_order_id_and_product_id", unique: true
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "order_id", null: false
+    t.integer "status", default: 0, null: false
+    t.float "payment_amount", default: 0.0, null: false
+    t.integer "order_line_count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_orders_on_order_id", unique: true
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "sku", null: false
+    t.string "name", null: false
+    t.float "price", default: 0.0, null: false
+    t.integer "amount", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sku"], name: "index_products_on_sku", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_02_01_125703) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.string "role", default: "0", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

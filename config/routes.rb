@@ -1,10 +1,12 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  devise_for :users
   root 'home#index'
 
-  resources :orders, expect: [:destroy]
+  devise_for :users
+
+  resources :orders, only: [:index, :show, :edit, :update]
+  resources :products, only: [:index, :show]
 
   mount Sidekiq::Web => 'admin/sidekiq'
 end

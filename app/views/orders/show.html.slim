@@ -3,14 +3,20 @@ h1.mb-4
   = @order.id
 
 p
+  strong User:
+  = @order.user
+p
   strong Order:
   = @order.order_id
 p
   strong Status:
   = @order.status
 p
-  strong Total price:
-  = @order.total_price
+  strong Payment amount:
+  = @order.payment_amount
+p
+  strong Order line count:
+  = @order.order_line_count
 
 = link_to 'Edit', edit_order_path(@order), class: 'btn btn-success mr-2'
 = link_to 'Back', orders_path, class: 'btn btn-info'
