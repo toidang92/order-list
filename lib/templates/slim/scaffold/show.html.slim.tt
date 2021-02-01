@@ -1,0 +1,13 @@
+p#notice= notice
+
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+p
+  strong <%= attribute.human_name %>:
+  = @<%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+
+= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-success'
+
+br
+
+= link_to 'Back', <%= index_helper %>_path, class: 'btn btn-info'

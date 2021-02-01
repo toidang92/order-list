@@ -1,0 +1,16 @@
+= simple_form_for(<%= singular_table_name %>, wrapper: :horizontal_form) do |f|
+  = render 'layouts/shared/notifications', f: f, object: f.object
+
+  .form-inputs
+<%- attributes.each do |attribute| -%>
+  <%- if attribute.reference? -%>
+    = f.<%= :association %> :<%= attribute.name %>
+  <%- elsif attribute.type != 'string' -%>
+    = f.<%= :input %> :<%= attribute.name %>, as: :<%= attribute.type %>
+  <%- else -%>
+    = f.<%= :input %> :<%= attribute.name %>
+  <%- end -%>
+<%- end -%>
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'

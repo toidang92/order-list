@@ -1,0 +1,32 @@
+p#notice= notice
+
+h1 <%= plural_table_name.titleize %>
+
+table.table.table-striped.table-bordered
+  thead
+    tr
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+      th <%= attribute.human_name %>
+<% end -%>
+      th width="200"
+
+  tbody
+    - if @<%= plural_table_name %>.present?
+      - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+        tr
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+          td= <%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+          td
+            .btn-group role="group" aria-label="Actions"
+              = link_to 'Show', <%= model_resource_name %>, class: 'btn btn-primary btn-sm'
+              = link_to 'Edit', edit_<%= singular_route_name %>_path(<%= singular_table_name %>), class: 'btn btn-success btn-sm'
+              = link_to 'Destroy', <%= model_resource_name %>, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' }
+    - else
+      tr
+        td colspan="<%= attributes.reject(&:password_digest?).size + 1 %>"
+          | Not found records.
+
+br
+
+= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_route_name %>_path, class: 'btn btn-primary'

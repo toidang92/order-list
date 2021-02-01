@@ -1,0 +1,11 @@
+h1 Editing <%= singular_table_name.titleize %>
+
+== render 'form', <%= singular_table_name %>: @<%= singular_table_name %>
+
+br
+
+= link_to 'Show', @<%= singular_table_name %>, class: 'btn btn-success'
+
+br
+
+= link_to 'Back', <%= index_helper %>_path, class: 'btn btn-info'
