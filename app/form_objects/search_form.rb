@@ -1,18 +1,11 @@
 class SearchForm
   include ActiveModel::Model
 
-  attr_reader :email
-  attr_reader :order
+  attr_accessor :email
 
-  validates_length_of :email, minimum: 3, message: 'Please enter at least 3 letters to search'
-
-  def initialize(email)
-  end
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   def persisted?
     false
-  end
-
-  def build_query
   end
 end

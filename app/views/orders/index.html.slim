@@ -1,7 +1,15 @@
 h1.mb-4 Orders
 
 .mb-4
-  = render 'searchbox'
+  = render "searchbox", search_form: @search_form
+
+.mb-2
+  .input-group-append.float-right
+    button.btn.btn-outline-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" Sort
+    .dropdown-menu
+      a.dropdown-item href="#" Order date ASC
+      a.dropdown-item href="#" Order date DESC
+  .clearfix
 
 table.table.table-striped.table-bordered
   thead
@@ -30,3 +38,5 @@ table.table.table-striped.table-bordered
       tr
         td colspan="6"
           | Not found records.
+
+= paginate @orders

@@ -4,9 +4,11 @@ class OrdersController < ApplicationController
   def index
     if params.key?(:search_form)
       @search_form = SearchForm.new(search_params)
+    else
+      @search_form = SearchForm.new
     end
 
-    @orders = Order.all
+    @orders = Order.page params[:page]
   end
 
   def show
@@ -30,7 +32,7 @@ class OrdersController < ApplicationController
   end
 
   def search_params
-    params.require(:search_form).permit(:email, :order)
+    params.require(:search_form).permit(:email)
   end
 
   def order_params
