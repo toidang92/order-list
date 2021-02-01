@@ -1,20 +1,23 @@
 h1.mb-4 Orders
 
+.mb-4
+  = render 'searchbox'
+
 table.table.table-striped.table-bordered
   thead
     tr
       th User
       th Order
       th Status
-      th Payment amount
-      th Order line count
+      th Payment
+      th Item count
       th width="200"
 
   tbody
     - if @orders.present?
       - @orders.each do |order|
         tr
-          td= order.user
+          td= order.orderer.name
           td= order.order_id
           td= order.status
           td= order.payment_amount
@@ -23,7 +26,6 @@ table.table.table-striped.table-bordered
             .btn-group role="group" aria-label="Actions"
               = link_to 'Show', order, class: 'btn btn-primary btn-sm'
               = link_to 'Edit', edit_order_path(order), class: 'btn btn-success btn-sm'
-              = link_to 'Destroy', order, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' }
     - else
       tr
         td colspan="6"

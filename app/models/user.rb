@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable, :confirmable
 
-  enum role: [:guest, :admin]
+  enum role: [:guest, :admin], _default: :guest
 
   has_many :orders, class_name: 'Order', inverse_of: :orderer, dependent: :destroy
 end

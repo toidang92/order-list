@@ -1,0 +1,9 @@
+:concurrency: 5
+:logfile: log/sidekiq.log
+:pidfile: tmp/pids/sidekiq.pid
+:queues:
+  - [order, 1]
+  - [default, 1]
+
+production:
+  :concurrency: <%= ENV.fetch("RAILS_MAX_THREADS") { 25 } %>
