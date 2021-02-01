@@ -2,6 +2,10 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update]
 
   def index
+    if params.key?(:search_form)
+      @search_form = SearchForm.new(search_params)
+    end
+
     @orders = Order.all
   end
 
@@ -20,8 +24,13 @@ class OrdersController < ApplicationController
   end
 
   private
+
   def set_order
     @order = Order.find(params[:id])
+  end
+
+  def search_params
+    params.require(:search_form).permit(:email, :order)
   end
 
   def order_params

@@ -1,10 +1,10 @@
-nav.navbar.navbar-expand-lg.navbar-light.bg-light.border-bottom
+nav.navbar.navbar-light.bg-light.border-bottom
   button#menu-toggle.btn.btn-primary Toggle Menu
-  button.navbar-toggler aria-controls="navbar_main" aria-expanded="false" aria-label="Toggle navigation" data-target="#navbar_main" data-toggle="collapse" type="button"
-    span.navbar-toggler-icon
-  #navbar_main.collapse.navbar-collapse
-    ul.navbar-nav.ml-auto.mt-2.mt-lg-0
-      li.nav-item.active
-        = link_to root_path, class: "nav-link"
-          | Home
-          span.sr-only (current)
+  #navbar_main
+    ul.navbar-nav.d-block
+      li.nav-item.d-inline-block.mr-2
+        = link_to "#", class: "nav-link text-white btn btn-success py-1 px-2"
+          i.fa.fa-user.mr-1
+          = current_user.name
+      li.nav-item.d-inline-block
+        = link_to "Log out", destroy_user_session_path, class: "nav-link text-white btn btn-warning py-1 px-2"

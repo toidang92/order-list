@@ -37,6 +37,7 @@ module Cv
       #{config.root}/lib/utils
       #{config.root}/lib/plugins
       #{config.root}/app/services
+      #{config.root}/app/form_objects
     )
 
     config.to_prepare do
