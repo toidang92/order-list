@@ -4,6 +4,8 @@
 // that code so it'll be compiled.
 
 import "jquery";
+import "popper.js";
+import "bootstrap";
 
 require("@rails/ujs").start()
 // require("turbolinks").start()
