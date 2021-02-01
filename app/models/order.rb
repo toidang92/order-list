@@ -8,7 +8,7 @@ class Order < ApplicationRecord
     completed:  5,
   }, _default: :order_new
 
-  belongs_to :orderer, class_name: 'User', inverse_of: :orders
+  belongs_to :orderer, class_name: 'User', foreign_key: 'user_id', inverse_of: :orders
   has_many :order_lines, dependent: :delete_all
 
   before_create :generate_order_id

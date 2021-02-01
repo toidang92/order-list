@@ -3,12 +3,13 @@ class OrdersController < ApplicationController
 
   def index
     if params.key?(:search_form)
-      @search_form = SearchForm.new(search_params)
+      search_query = search_params
     else
-      @search_form = SearchForm.new
+      search_query = {}
     end
 
-    @orders = Order.page params[:page]
+    @search_form = SearchForm.new(search_query)
+    @orders = OrderService::Search.call(search_form: @search_form).orders
   end
 
   def show
@@ -18,11 +19,7 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if @order.update(order_params)
-      redirect_to @order, notice: 'Order was successfully updated.'
-    else
-      render :edit
-    end
+    OrderService::UpdateStatus.call(order: order, status: order_params[:status])
   end
 
   private
