@@ -12,5 +12,13 @@ FactoryBot.define do
         end
       end
     end
+
+    trait :with_order_item_products do
+      before(:create) do |order|
+        1.times.each do |product_id|
+          order.order_items << create(:order_item, :with_product, order: order)
+        end
+      end
+    end
   end
 end

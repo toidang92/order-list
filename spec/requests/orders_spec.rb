@@ -12,67 +12,75 @@
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/orders", type: :request do
+RSpec.describe OrdersController, type: :controller do
   # Order. As you add validations to Order, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  it { should use_before_action(:authenticate_user!) }
 
   describe "GET /index" do
-    it "renders a successful response" do
-      Order.create! valid_attributes
-      get orders_url
-      expect(response).to be_successful
+    it "renders a successful response with admin user" do
+      user = FactoryBot.create(:user, role: :admin)
+      sign_in user
+      get :index
+      should respond_with(200)
+    end
+
+    it "renders a successful response with guest user" do
+      user = FactoryBot.create(:user, role: :guest)
+      sign_in user
+      get :index
+      should respond_with(302)
     end
   end
 
   describe "GET /show" do
+    before(:each) do
+      user = FactoryBot.create(:user, role: :admin)
+      sign_in user
+      @order = FactoryBot.create(:order, :with_order_item_products)
+    end
+
     it "renders a successful response" do
-      order = Order.create! valid_attributes
-      get order_url(order)
+      order = FactoryBot.create(:order, :with_order_item_products)
+      get :show, params: { id: @order.id }
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
+    before(:each) do
+      user = FactoryBot.create(:user, role: :admin)
+      sign_in user
+      @order = FactoryBot.create(:order, :with_order_item_products)
+    end
+
     it "render a successful response" do
-      order = Order.create! valid_attributes
-      get edit_order_url(order)
+      get :edit, params: { id: @order.id }
       expect(response).to be_successful
     end
   end
 
   describe "PATCH /update" do
+    before(:each) do
+      user = FactoryBot.create(:user, role: :admin)
+      sign_in user
+      @order = FactoryBot.create(:order, :with_order_item_products, status: :order_new)
+    end
+
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
       it "updates the requested order" do
-        order = Order.create! valid_attributes
-        patch order_url(order), params: { order: new_attributes }
-        order.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the order" do
-        order = Order.create! valid_attributes
-        patch order_url(order), params: { order: new_attributes }
-        order.reload
-        expect(response).to redirect_to(order_url(order))
+        patch :update, params: { id: @order.id, order: { status: :completed } }
+        should set_flash[:success]
+        should redirect_to(order_path(@order))
       end
     end
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        order = Order.create! valid_attributes
-        patch order_url(order), params: { order: invalid_attributes }
-        expect(response).to be_successful
+        patch :update, params: { id: @order.id, order: { status: :order_new } }
+        should set_flash[:error]
+        should redirect_to(edit_order_path(@order))
       end
     end
   end

@@ -10,6 +10,7 @@ class Order < ApplicationRecord
 
   validates :payment_amount, presence: true
   validates :payment_amount, numericality: { greater_than: 0 }
+  validates_uniqueness_of :order_id, case_sensitive: false
 
   belongs_to :orderer, class_name: 'User', foreign_key: 'user_id', inverse_of: :orders
   has_many :order_items, dependent: :delete_all
@@ -30,7 +31,7 @@ class Order < ApplicationRecord
 
   def generate_order_id
     begin
-      self.order_id = SecureRandom.hex(10)
+      self.order_id = SecureRandom.hex(10).downcase
     end while Order.where(id: self.order_id).exists?
   end
 end
