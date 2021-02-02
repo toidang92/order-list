@@ -63,6 +63,7 @@ module Cv
     config.time_zone = 'Bangkok'
     config.i18n.available_locales = [:en]
     config.i18n.default_locale = :en
+    config.i18n.fallbacks = [I18n.default_locale]
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.encoding = 'utf-8'
@@ -76,5 +77,11 @@ module Cv
     config.active_storage.routes_prefix = '/as_uploads'
 
     config.middleware.delete Rack::Runtime
+
+    config.cache_store = :redis_cache_store, {
+      driver: :hiredis,
+      timeout: 30,
+      url: ENV['REDIS_CACHE_URL']
+    }
   end
 end

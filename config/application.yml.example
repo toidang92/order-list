@@ -1,0 +1,14 @@
+DOMAIN_NAME: 'toidang.dev.local'
+
+# REDIS
+REDIS_SPLIT_POOL: '30'
+REDIS_SPLIT_URL: 'redis://redis:6379/0'
+
+REDIS_BG_POOL: '30'
+REDIS_BG_CLIENT_URL: 'redis://redis:6379/1'
+REDIS_BG_SERVER_URL: 'redis://redis:6379/2'
+
+REDIS_SESSION_URL: 'redis://redis:6379/3'
+REDIS_EXCEPTION_URL: 'redis://redis:6379/4'
+
+REDIS_CACHE_URL: 'redis://redis:6379/5'

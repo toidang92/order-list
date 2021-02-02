@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   app:
+    container_name: order_list_container
     tty: true
     stdin_open: true
     build:
@@ -16,6 +17,33 @@ services:
     depends_on:
       - db
       - redis
+
+  sidekiq:
+    container_name: sidekiq_container
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    command: bundle exec sidekiq
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - 'db'
+      - 'redis'
+
+  nginx:
+    container_name: nginx_container
+    image: nginx:1.19.6
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/templates:/etc/nginx/templates
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_PORT=80
+      - NGINX_HOST=toidang.dev.local
+      - NGINX_UPSTREAM=app:3000
+    depends_on:
+      - app
 
   db:
     container_name: postgres_container
@@ -39,8 +67,10 @@ services:
       - ./docker/redis/data:/data
     ports:
       - "6379:6379"
+    restart: unless-stopped
 
   mail:
     image: schickling/mailcatcher:latest
     ports:
-      - '1080:1080'
+      - "1080:1080"
+    restart: unless-stopped

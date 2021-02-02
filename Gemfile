@@ -19,7 +19,6 @@ gem 'sass-rails', '>= 6'
 
 gem 'slim-rails'
 
-gem 'react-rails'
 gem 'webpacker', '~> 5.2'
 
 gem 'bcrypt', '~> 3.1.7'
@@ -63,6 +62,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'database_cleaner-active_record'
+  gem 'factory_bot_rails'
 end
 
 group :development do
