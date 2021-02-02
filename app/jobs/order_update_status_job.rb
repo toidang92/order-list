@@ -1,7 +1,7 @@
 class OrderUpdateStatusJob < ApplicationJob
-  queue_as :order
+  queue_as :mailers
 
   def perform(order_id)
-    # Do something later
+    OrderMailer.update_status(order).deliver_now
   end
 end
