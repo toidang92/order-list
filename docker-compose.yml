@@ -18,19 +18,6 @@ services:
       - db
       - redis
 
-  sidekiq:
-    container_name: sidekiq_container
-    build:
-      context: ./
-      dockerfile: Dockerfile.dev
-    command: bundle exec sidekiq
-    volumes:
-      - ./:/var/www
-      - ./docker/app/bundle:/bundle
-    depends_on:
-      - db
-      - redis
-
   nginx:
     container_name: nginx_container
     image: nginx:1.19.6

@@ -1,7 +1,9 @@
 FROM ruby:2.7.2
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
+
+RUN apt-get update -qq && apt-get install -y --no-install-recommends --no-install-suggests curl bzip2 build-essential libssl-dev libreadline-dev zlib1g-dev
+
 # for a JS runtime
-RUN apt-get install -y nodejs
+RUN apt-get install -y nodejs yarn
 
 ENV DIR /var/www
 
@@ -9,6 +11,12 @@ RUN mkdir $DIR
 WORKDIR $DIR
 ADD . $DIR
 
+RUN mkdir -p /bundle
+
 ENV BUNDLE_GEMFILE=$DIR/Gemfile \
-BUNDLE_JOBS=2 \
+BUNDLE_JOBS=5 \
 BUNDLE_PATH=/bundle
+
+RUN gem sources --add https://rubygems.org/
+WORKDIR /bundle
+RUN gem install foreman --force --local

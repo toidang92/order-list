@@ -53,16 +53,17 @@ gem 'devise-async'
 gem 'kaminari'
 
 group :development, :test do
+  gem 'faker'
+  gem 'factory_bot_rails'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-rails', platforms: [:mri, :mingw, :x64_mingw]
 end
 
-group :development, :test do
-  gem 'faker'
+group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'database_cleaner-active_record'
-  gem 'factory_bot_rails'
 end
 
 group :development do
