@@ -6,7 +6,7 @@ h1.mb-4 Orders
 .mb-2
   .input-group-append.float-right
     button#dropdownSort.btn.btn-outline-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button"
-      = params[:sort].present? ? params[:sort].humanize : 'Sort'
+      = params[:sort].present? ? params[:sort].humanize : SearchForm::DEFAULT_SORT.to_s.humanize
     .dropdown-menu aria-labelledby="dropdownSort"
       - SearchForm::SORT_MAPS.each_key do |key|
         = link_to key.to_s.humanize, url_for(params.merge(sort: key).to_unsafe_h), class: 'dropdown-item'
