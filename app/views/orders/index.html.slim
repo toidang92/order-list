@@ -25,9 +25,9 @@ table.table.table-striped.table-bordered
     - if @orders.present?
       - @orders.each do |order|
         tr
-          td= order.orderer.name
+          td= order.orderer.email
           td= order.order_id
-          td= order.status
+          td= order.status_name
           td= order.payment_amount
           td= order.order_line_count
           td

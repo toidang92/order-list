@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "orders/edit", type: :view do
   before(:each) do
     @order = assign(:order, Order.create!(
-      user: "",
+      orderer: "",
       order_id: "MyString",
       status: 1,
       payment_amount: 1.5,
@@ -16,7 +16,7 @@ RSpec.describe "orders/edit", type: :view do
 
     assert_select "form[action=?][method=?]", order_path(@order), "post" do
 
-      assert_select "input[name=?]", "order[user]"
+      assert_select "input[name=?]", "order[orderer]"
 
       assert_select "input[name=?]", "order[order_id]"
 

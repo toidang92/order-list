@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+  validates :name, :price, :amount, presence: true
+  validates :price, numericality: { greater_than: 1 }
+
   has_many :order_items, dependent: :delete_all
 
   before_create :generate_sku

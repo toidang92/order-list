@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "orders/show", type: :view do
   before(:each) do
     @order = assign(:order, Order.create!(
-      user: "",
+      orderer: "",
       order_id: "Order",
       status: 2,
       payment_amount: 3.5,

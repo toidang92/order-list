@@ -17,6 +17,10 @@ ENV BUNDLE_GEMFILE=$DIR/Gemfile \
 BUNDLE_JOBS=5 \
 BUNDLE_PATH=/bundle
 
-RUN gem sources --add https://rubygems.org/
-WORKDIR /bundle
-RUN gem install foreman --force --local
+# Skip installing gem documentation
+RUN mkdir -p /usr/local/etc \
+	&& { \
+		echo 'gem: "--no-document"'; \
+	} >> /usr/local/etc/gemrc
+
+RUN bundle install --gemfile=Gemfile.dev

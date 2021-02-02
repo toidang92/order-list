@@ -5,6 +5,14 @@
 }
 
 .has-search.input-group {
+  .custom-select {
+    min-width: 140px;
+  }
+
+  .input-group-append {
+    width: calc(100% - 140px);
+  }
+
   .form-control-feedback {
     position: absolute;
     display: block;
@@ -18,7 +26,7 @@
   }
 
   .form-control {
-    border-top-left-radius: $border-radius;
-    border-bottom-left-radius: $border-radius;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 }

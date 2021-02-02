@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    attributes:
+      order:
+        statuses:
+          order_new:  'New'
+          processing: 'Processing'
+          paid:       'Paid'
+          shipped:    'Shipped'
+          cancelled:  'Cancelled'
+          completed:  'Completed'

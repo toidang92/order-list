@@ -2,6 +2,8 @@
   .card.border-primary.rounded
     .card-body
       .form-group.has-search.input-group
-        span.fas.fa-search.form-control-feedback
-        = form.email_field :email, class: 'form-control', placeholder: 'Enter email'
+        = form.select :status, Order.statuses_for_select, { include_blank: 'Status' }, { class: 'custom-select' }
+        .input-group-append
+          span.fas.fa-search.form-control-feedback
+          = form.email_field :email, class: 'form-control', placeholder: 'Enter email'
       button.btn.btn-success.float-right.w-100 type="submit" Search

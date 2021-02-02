@@ -5,5 +5,4 @@ class OrderPreview < ActionMailer::Preview
   def update_status
     OrderMailer.update_status
   end
-
 end

@@ -4,13 +4,13 @@ h1.mb-4
 
 p
   strong User:
-  = @order.user
+  = @order.orderer.name
 p
   strong Order:
   = @order.order_id
 p
   strong Status:
-  = @order.status
+  = @order.status_name
 p
   strong Payment amount:
   = @order.payment_amount

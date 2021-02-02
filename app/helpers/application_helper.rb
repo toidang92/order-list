@@ -26,4 +26,8 @@ module ApplicationHelper
 
     html.html_safe
   end
+
+  def enum_for_select(enums)
+    enums.keys
+  end
 end

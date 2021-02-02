@@ -4,14 +4,14 @@ RSpec.describe "orders/index", type: :view do
   before(:each) do
     assign(:orders, [
       Order.create!(
-        user: "",
+        orderer: "",
         order_id: "Order",
         status: 2,
         payment_amount: 3.5,
         order_line_count: 4
       ),
       Order.create!(
-        user: "",
+        orderer: "",
         order_id: "Order",
         status: 2,
         payment_amount: 3.5,

@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
 
     @search_form = SearchForm.new(search_query)
     @orders = OrderService::Search.call(search_form: @search_form).orders
+    @orders = @orders.includes(:orderer)
   end
 
   def show
@@ -19,7 +20,8 @@ class OrdersController < ApplicationController
   end
 
   def update
-    OrderService::UpdateStatus.call(order: order, status: order_params[:status])
+    OrderService::UpdateStatus.call(order: @order, status: order_params[:status])
+    redirect_to @order
   end
 
   private
@@ -29,7 +31,7 @@ class OrdersController < ApplicationController
   end
 
   def search_params
-    params.require(:search_form).permit(:email)
+    params.require(:search_form).permit(:email, :status)
   end
 
   def order_params

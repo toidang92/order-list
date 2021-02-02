@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   has_many :orders, class_name: 'Order', foreign_key: 'user_id', inverse_of: :orderer, dependent: :destroy
 
-  #this method is called by devise to check for "active" state of the model
+  #this method is called by devise to check for role of the model
   def active_for_authentication?
     super and self.admin?
   end
