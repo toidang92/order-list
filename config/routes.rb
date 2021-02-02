@@ -1,5 +1,7 @@
 require 'sidekiq/web'
 
+Sidekiq::Web.set :session_secret, Rails.application.secret_key_base
+
 Rails.application.routes.draw do
   root 'home#index'
 
@@ -9,5 +11,7 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show]
   resources :users, only: [:index]
 
-  mount Sidekiq::Web => 'admin/sidekiq'
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end
