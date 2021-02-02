@@ -17,6 +17,7 @@ services:
     depends_on:
       - db
       - redis
+      - mail
 
   nginx:
     container_name: nginx_container
@@ -61,4 +62,5 @@ services:
     image: schickling/mailcatcher:latest
     ports:
       - "1080:1080"
+      - "1025:1025"
     restart: unless-stopped
