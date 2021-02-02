@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   }, _default: :order_new
 
   validates :payment_amount, presence: true
-  validates :payment_amount, numericality: { greater_than: 1 }
+  validates :payment_amount, numericality: { greater_than: 0 }
 
   belongs_to :orderer, class_name: 'User', foreign_key: 'user_id', inverse_of: :orders
   has_many :order_items, dependent: :delete_all

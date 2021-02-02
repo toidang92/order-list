@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   validates :name, :price, :amount, presence: true
-  validates :price, numericality: { greater_than: 1 }
+  validates :price, numericality: { greater_than: 0 }
 
   has_many :order_items, dependent: :delete_all
 

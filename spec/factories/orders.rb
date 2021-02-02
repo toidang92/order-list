@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :order do
     orderer
-    traits_for_enum(:status)
+    status { Order.statuses.values.sample }
 
     trait :with_order_items do
       before(:create) do |order|

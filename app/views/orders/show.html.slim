@@ -39,7 +39,7 @@ div
         th scope="col" Name
         th scope="col" Price
         th scope="col" Amount
-        th scope="col" Total
+        th.text-right scope="col" Total
     tbody.text-left
       - @order_items.each do |order_item|
         tr
@@ -47,7 +47,7 @@ div
           td= order_item.product.name
           td= order_item.price
           td= order_item.amount
-          td= order_item.payment_amount
+          td.text-right= order_item.payment_amount
       tr
         td.text-right colspan=5
           strong= @order.payment_amount

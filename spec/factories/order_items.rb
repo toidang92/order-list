@@ -3,6 +3,6 @@ FactoryBot.define do
     order nil
     product nil
     price { Faker::Number.within(range: 10000..100000) }
-    amount { Faker::Number.within(range: 1..10) }
+    amount { Faker::Number.within(range: 2..10) }
   end
 end

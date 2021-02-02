@@ -1,6 +1,6 @@
 class OrderItem < ApplicationRecord
   validates :payment_amount, :price, :amount, presence: true
-  validates :payment_amount, :price, :amount, numericality: { greater_than: 1 }
+  validates :payment_amount, :price, :amount, numericality: { greater_than: 0 }
 
   belongs_to :order, counter_cache: :order_line_count
   belongs_to :product
