@@ -58,7 +58,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
+  config.action_mailer.smtp_settings = { address: 'mail', port: 1025 }
 
   config.action_mailer.default_url_options = { host: ENV['DOMAIN_NAME'], port: :https }
   config.action_controller.default_url_options = { host: ENV['DOMAIN_NAME'], port: :https }
