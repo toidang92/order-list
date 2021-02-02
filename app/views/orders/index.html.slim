@@ -5,19 +5,20 @@ h1.mb-4 Orders
 
 .mb-2
   .input-group-append.float-right
-    button#dropdownMenuLink.btn.btn-outline-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" Sort
-    .dropdown-menu aria-labelledby="dropdownMenuLink"
-      a.dropdown-item href="#" Order date ASC
-      a.dropdown-item href="#" Order date DESC
+    button#dropdownSort.btn.btn-outline-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button"
+      = params[:sort].present? ? params[:sort].humanize : 'Sort'
+    .dropdown-menu aria-labelledby="dropdownSort"
+      - SearchForm::SORT_MAPS.each_key do |key|
+        = link_to key.to_s.humanize, url_for(params.merge(sort: key).to_unsafe_h), class: 'dropdown-item'
   .clearfix
 
 table.table.table-striped.table-bordered
   thead
     tr
       th User
-      th Order
       th Status
       th Payment
+      th Order at
       th Item count
       th width="200"
 
@@ -26,9 +27,9 @@ table.table.table-striped.table-bordered
       - @orders.each do |order|
         tr
           td= order.orderer.email
-          td= order.order_id
           td= order.status_name
           td= order.payment_amount
+          td= l(order.created_at, format: :long)
           td= order.order_line_count
           td
             .btn-group role="group" aria-label="Actions"
@@ -36,7 +37,7 @@ table.table.table-striped.table-bordered
               = link_to 'Edit', edit_order_path(order), class: 'btn btn-success btn-sm'
     - else
       tr
-        td colspan="6"
+        td colspan="8"
           | Not found records.
 
 = paginate @orders

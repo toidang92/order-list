@@ -2,21 +2,24 @@ h1.mb-4
   | Order#
   = @order.id
 
-p
-  strong User:
-  = @order.orderer.name
-p
-  strong Order:
-  = @order.order_id
-p
-  strong Status:
-  = @order.status_name
-p
-  strong Payment amount:
-  = @order.payment_amount
-p
-  strong Order line count:
-  = @order.order_line_count
+= render 'layouts/shared/notifications'
 
-= link_to 'Edit', edit_order_path(@order), class: 'btn btn-success mr-2'
-= link_to 'Back', orders_path, class: 'btn btn-info'
+div
+  p
+    strong User:
+    = @order.orderer.name
+  p
+    strong Order:
+    = @order.order_id
+  p
+    strong Status:
+    = @order.status_name
+  p
+    strong Payment amount:
+    = @order.payment_amount
+  p
+    strong Order line count:
+    = @order.order_line_count
+
+  = link_to 'Edit', edit_order_path(@order), class: 'btn btn-success mr-2'
+  = link_to 'Back', orders_path, class: 'btn btn-info'

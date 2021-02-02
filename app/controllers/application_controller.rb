@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   # Inside your protected controller
   before_action :authenticate_user!
 
-
   include ErrorRenders
 
   rescue_from StandardError do |e|

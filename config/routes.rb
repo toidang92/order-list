@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:index, :show, :edit, :update]
   resources :products, only: [:index, :show]
+  resources :users, only: [:index]
 
   mount Sidekiq::Web => 'admin/sidekiq'
 end

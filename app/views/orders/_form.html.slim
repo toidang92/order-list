@@ -1,5 +1,5 @@
 = simple_form_for(order, wrapper: :horizontal_form, defaults: { input_html: { disabled: true } }) do |f|
-  = render 'layouts/shared/notifications', f: f, object: f.object
+  = render 'layouts/shared/notifications'
 
   .form-inputs
     = f.input :orderer, as: :string, input_html: { value: "#{f.object.orderer.name} - #{f.object.orderer.email}" }

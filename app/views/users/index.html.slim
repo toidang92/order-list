@@ -1,0 +1,21 @@
+h1.mb-4 Users
+
+table.table.table-striped.table-bordered
+  thead
+    tr
+      th Name
+      th Email
+      th Role
+  tbody
+    - if @users.present?
+      - @users.each do |user|
+        tr
+          td= user.name
+          td= user.email
+          td= user.role
+    - else
+      tr
+        td colspan="3"
+          | Not found records.
+
+= paginate @users

@@ -1,1 +1,5 @@
-= bootstrap_error_messages! object
+.mb-3
+  - flash.each do |type, msg|
+    .alert.alert-dismissable.fade.show class=bootstrap_class_for_flash(type)
+      = msg
+      button.close data-dismiss="alert" x
