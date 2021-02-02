@@ -5,7 +5,7 @@ class OrderItem < ApplicationRecord
   belongs_to :order, counter_cache: :order_line_count
   belongs_to :product
 
-  before_save :calculate_payment_amount
+  before_validation :calculate_payment_amount
   after_save :update_order_payment
 
   def update_order_payment
