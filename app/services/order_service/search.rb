@@ -1,6 +1,13 @@
 module OrderService
   class Search < BaseService
     def call(search_form:)
+      if search_form.invalid?
+        return error({
+          errors: search_form.errors.full_messages.join(', '),
+          orders: Order.none.page(search_form.page)
+        })
+      end
+
       orders = Order.all
 
       if search_form.email.present?
