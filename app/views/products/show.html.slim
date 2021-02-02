@@ -2,14 +2,23 @@ h1.mb-4
   | Product#
   = @product.id
 
-p
-  strong Name:
-  = @product.name
-p
-  strong Price:
-  = @product.price
-p
-  strong Amount:
-  = @product.amount
+h3 Product information
+
+div
+  table.table.table-bordered
+    thead
+      tr
+        th scope="col" #
+        th scope="col" Value
+    tbody.text-left
+      tr
+        th scope="row" Name:
+        td= @product.name
+      tr
+        th scope="row" Price:
+        td= @product.price
+      tr
+        th scope="row" Amount:
+        td= @product.amount
 
 = link_to 'Back', products_path, class: 'btn btn-info'

@@ -4,22 +4,53 @@ h1.mb-4
 
 = render 'layouts/shared/notifications'
 
+h3 Order information
+
 div
-  p
-    strong User:
-    = @order.orderer.name
-  p
-    strong Order:
-    = @order.order_id
-  p
-    strong Status:
-    = @order.status_name
-  p
-    strong Payment amount:
-    = @order.payment_amount
-  p
-    strong Order line count:
-    = @order.order_line_count
+  table.table.table-bordered
+    thead
+      tr
+        th scope="col" #
+        th scope="col" Value
+    tbody.text-left
+      tr
+        th scope="row" User:
+        td= @order.orderer.name
+      tr
+        th scope="row" Order:
+        td= @order.order_id
+      tr
+        th scope="row" Status:
+        td= @order.status_name
+      tr
+        th scope="row" Payment amount:
+        td= @order.payment_amount
+      tr
+        th scope="row" Order line count:
+        td= @order.order_line_count
+
+h3 Products
+
+div
+  table.table.table-bordered
+    thead
+      tr
+        th scope="col" Product SKU
+        th scope="col" Name
+        th scope="col" Price
+        th scope="col" Amount
+        th scope="col" Total
+    tbody.text-left
+      - @order_items.each do |order_item|
+        tr
+          td= order_item.product.sku
+          td= order_item.product.name
+          td= order_item.price
+          td= order_item.amount
+          td= order_item.payment_amount
+      tr
+        td.text-right colspan=5
+          strong= @order.payment_amount
 
   = link_to 'Edit', edit_order_path(@order), class: 'btn btn-success mr-2'
   = link_to 'Back', orders_path, class: 'btn btn-info'

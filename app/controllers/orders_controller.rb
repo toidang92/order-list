@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order_items = @order.order_items.includes(order_items: :product)
+    @order_items = @order.order_items.includes(:product)
   end
 
   def edit
