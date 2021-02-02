@@ -26,9 +26,10 @@ services:
     command: bundle exec sidekiq
     volumes:
       - ./:/var/www
+      - ./docker/app/bundle:/bundle
     depends_on:
-      - 'db'
-      - 'redis'
+      - db
+      - redis
 
   nginx:
     container_name: nginx_container

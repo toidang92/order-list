@@ -5,5 +5,11 @@
   - [order, 1]
   - [default, 1]
 
+development:
+  :concurrency: <%= ENV.fetch("RAILS_MAX_THREADS") { 25 } %>
+
+test:
+  :concurrency: <%= ENV.fetch("RAILS_MAX_THREADS") { 25 } %>
+
 production:
   :concurrency: <%= ENV.fetch("RAILS_MAX_THREADS") { 25 } %>

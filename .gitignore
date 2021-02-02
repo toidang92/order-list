@@ -68,3 +68,5 @@ yarn-debug.log*
 server/production
 /config/master.key
 /config/credentials.yml.enc
+
+docker
