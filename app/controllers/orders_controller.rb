@@ -9,11 +9,16 @@ class OrdersController < ApplicationController
 
     @search_form = SearchForm.new(search_query)
     @orders = OrderService::Search.call(search_form: @search_form).orders
-    @orders = @orders.includes(:orderer)
+
+    if stale?(@orders)
+      @orders = @orders.includes(:orderer)
+    end
   end
 
   def show
-    @order_items = @order.order_items.includes(:product)
+    if stale?(@order)
+      @order_items = @order.order_items.includes(:product)
+    end
   end
 
   def edit
