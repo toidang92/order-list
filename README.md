@@ -15,10 +15,11 @@
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
-    <li><a href="#erb">ERD</a></li>
-    <li><a href="#installation">Installation</a></li>
-    <li><a href="#screenshots">Screenshots</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#i-about-the-project">About the project</a></li>
+    <li><a href="#ii-erd">ERD</a></li>
+    <li><a href="#iii-installation">Installation</a></li>
+    <li><a href="#vi-screenshots">Screenshots</a></li>
+    <li><a href="#v-contact">Contact</a></li>
   </ol>
 </details>
 
