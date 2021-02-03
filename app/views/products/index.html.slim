@@ -4,8 +4,8 @@ table.table.table-striped.table-bordered
   thead
     tr
       th Name
-      th Price
-      th Amount
+      th.text-center Price
+      th.text-center Amount
       th width="200"
 
   tbody
@@ -13,8 +13,8 @@ table.table.table-striped.table-bordered
       - @products.each do |product|
         tr
           td= product.name
-          td= product.price
-          td= product.amount
+          td.text-right= product.price
+          td.text-right= product.amount
           td
             .btn-group role="group" aria-label="Actions"
               = link_to 'Show', product, class: 'btn btn-primary btn-sm'

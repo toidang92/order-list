@@ -14,8 +14,8 @@ h1.mb-4 Orders
 
 table.table.table-striped.table-bordered
   thead
-    tr
-      th User
+    tr.text-center
+      th.text-left User
       th Status
       th Payment
       th Order at
@@ -25,13 +25,13 @@ table.table.table-striped.table-bordered
   tbody
     - if @orders.present?
       - @orders.each do |order|
-        tr
-          td= order.orderer.email
+        tr.text-right
+          td.text-left= order.orderer.email
           td= order.status_name
           td= order.payment_amount
           td= l(order.created_at, format: :long)
-          td= order.order_line_count
-          td
+          td.text-center= order.order_line_count
+          td.text-left
             .btn-group role="group" aria-label="Actions"
               = link_to 'Show', order, class: 'btn btn-primary btn-sm'
               = link_to 'Edit', edit_order_path(order), class: 'btn btn-success btn-sm'
