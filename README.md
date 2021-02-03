@@ -67,18 +67,22 @@ cp config/application.yml.example config/application.yml
 docker-compose up app
 ```
 
+URL: http://toidang.dev.local:3000/
+URL: http://toidang.dev.local:3000/sidekiq
+
 ```
-cp config/database.yml.example config/database.yml
-cp config/application.yml.example config/application.yml
-docker-compose up app
+docker-compose up nginx
 ```
+
+URL: http://toidang.dev.local/
+URL: http://toidang.dev.local/sidekiq
 
 ```
 docker-compose exec app bundle exec rspec
 ```
 
 ```
-127.0.0.1:3000
+http://toidang.dev.local:1080/
 ```
 
 
