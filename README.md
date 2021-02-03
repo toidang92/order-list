@@ -68,7 +68,11 @@ cp config/database.yml.example config/database.yml
 cp config/application.yml.example config/application.yml
 ```
 
-### 3. Let's run the application on Docker
+### 3. Set up docker compose
+
+URL: [Docker Compose](https://docs.docker.com/compose/install/)
+
+### 4. Let's run the application on Docker
 
 ```
 docker-compose up app
@@ -85,7 +89,7 @@ URLS:
 1. Main: http://toidang.dev.local:3000/
 2. Sidekiq: http://toidang.dev.local:3000/sidekiq
 
-### 4. Start Nginx on Docker
+### 5. Start Nginx on Docker
 
 ```
 docker-compose up nginx
@@ -96,20 +100,20 @@ URLS:
 1. Main: http://toidang.dev.local/
 2. Sidekiq: http://toidang.dev.local/sidekiq
 
-### 5. Execute  unit test with rspec
+### 6. Execute  unit test with rspec
 
 ```
 docker-compose exec app bundle exec rake db:create RAILS_ENV=test
 docker-compose exec app bundle exec rspec
 ```
 
-### 6. Check mail on mailcatcher
+### 7. Check mail on mailcatcher
 
 ```
 http://toidang.dev.local:1080/
 ```
 
-### 7. Notes
+### 8. Notes
 
 1. Sometimes, the javascript file loads incorrectly, because the yarn and application compile javscript files at the same time, lead to wrong compile files. Please change somethings at `app/javascript/packs/application.js` (EX. add console.log), then save and reload the pages.
 
