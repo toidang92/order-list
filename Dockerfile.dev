@@ -2,6 +2,15 @@ FROM ruby:2.7.2
 
 RUN apt-get update -qq && apt-get install -y --no-install-recommends --no-install-suggests curl bzip2 build-essential libssl-dev libreadline-dev zlib1g-dev
 
+RUN apt remove cmdtest
+RUN apt remove yarn
+
+RUN curl https://deb.nodesource.com/setup_14.x | bash
+RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+RUN apt-get update
+
 # for a JS runtime
 RUN apt-get install -y nodejs yarn
 
@@ -16,11 +25,3 @@ RUN mkdir -p /bundle
 ENV BUNDLE_GEMFILE=$DIR/Gemfile \
 BUNDLE_JOBS=5 \
 BUNDLE_PATH=/bundle
-
-# Skip installing gem documentation
-RUN mkdir -p /usr/local/etc \
-	&& { \
-		echo 'gem: "--no-document"'; \
-	} >> /usr/local/etc/gemrc
-
-RUN bundle install --gemfile=Gemfile.dev

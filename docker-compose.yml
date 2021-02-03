@@ -12,6 +12,7 @@ services:
     volumes:
       - ./:/var/www
       - ./docker/app/bundle:/bundle
+      - /var/www/node_modules
     ports:
       - "3000:3000"
     depends_on:

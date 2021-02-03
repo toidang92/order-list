@@ -17,7 +17,7 @@
     "webpack-obfuscator": "^3.2.0"
   },
   "scripts": {
-    "start": "bin/webpack-dev-server --hot --mode=development",
-    "build": "bin/webpack --mode=production"
+    "start": "./bin/webpack-dev-server --mode=development --hot --host 0.0.0.0 --inline --content-base .",
+    "build": "./bin/webpack --mode=production"
   }
 }
