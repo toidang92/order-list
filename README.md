@@ -1,28 +1,5 @@
 # README
 
-
-```
-/etc/hosts
-127.0.0.1    toidang.dev.local
-```
-
-```
-cp config/database.yml.example config/database.yml
-cp config/application.yml.example config/application.yml
-docker-compose up app
-```
-
-```
-cp config/database.yml.example config/database.yml
-cp config/application.yml.example config/application.yml
-docker-compose up app
-```
-
-```
-docker compose exec app bundle exec rake db:create RAILS_ENV=test
-docker compose exec app bundle exec rspec
-```
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -64,12 +41,13 @@ Here's a blank template to get started:
 
 
 
-<!-- GETTING STARTED -->
+<!-- ERD -->
 ## ERD
 
 ![Order List ERB](erd.jpg)
 
-### Installation
+<!-- INSTALLATION -->
+## Installation
 
 ```
 /etc/hosts
@@ -89,8 +67,8 @@ docker-compose up app
 ```
 
 ```
-docker compose exec app bundle exec rake db:create RAILS_ENV=test
-docker compose exec app bundle exec rspec
+docker-compose exec app bundle exec rake db:create RAILS_ENV=test
+docker-compose exec app bundle exec rspec
 ```
 
 <!-- CONTACT -->

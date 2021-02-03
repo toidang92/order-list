@@ -29,8 +29,9 @@ RSpec.describe Order, type: :model do
     end
 
     it "not order_items" do
-      order = FactoryBot.create(:order)
+      order = FactoryBot.build(:order)
       expect(order.valid?).to be_falsey
+      expect(order.errors[:order_items].size).to eq(1)
     end
   end
 end
