@@ -35,10 +35,17 @@ Here's a blank template to get started:
 
 ### Built With
 
-* []()
-* []()
-* []()
-
+* [Rails 6.1.1](https://github.com/rails/rails)
+* [Rspec](https://rspec.info/)
+* [Postgres 12.5](https://www.postgresql.org/)
+* [Redis 6.0.10](https://redis.io/)
+* [Nginx 1.19.6](https://www.nginx.com/)
+* [Docker 20.10.2](https://www.docker.com/)
+* [Docker compose 1.27.4](https://docs.docker.com/compose/)
+* [Yarn](https://yarnpkg.com/)
+* [Webpack](https://webpack.js.org/)
+* [jQuery](https://jquery.com/)
+* [Bootstrap](https://getbootstrap.com/)
 
 
 <!-- ERD -->
@@ -67,9 +74,13 @@ docker-compose up app
 ```
 
 ```
-docker-compose exec app bundle exec rake db:create RAILS_ENV=test
 docker-compose exec app bundle exec rspec
 ```
+
+```
+127.0.0.1:3000
+```
+
 
 <!-- CONTACT -->
 ## Contact

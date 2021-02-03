@@ -15,9 +15,6 @@ ActiveRecord::Schema.define(version: 2021_02_01_134729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
-  end
-
   create_table "order_items", force: :cascade do |t|
     t.bigint "order_id"
     t.bigint "product_id"
