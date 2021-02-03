@@ -5,7 +5,7 @@
     = f.input :payment_amount, as: :float
     = f.input :payment_amount, as: :string
     = f.input :order_line_count, as: :string
-    = f.input :status, as: :select, collection: Order.statuses_for_select, input_html: { disabled: false }
+    = f.input :status, as: :select, collection: Order.statuses_for_select, include_blank: false, input_html: { disabled: false, class: "custom-select" }
 
   .form-actions
     = f.button :submit, class: 'btn btn-primary'
