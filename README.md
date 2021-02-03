@@ -115,11 +115,11 @@ http://toidang.dev.local:1080/
 
 ### 8. Notes
 
-- Sometimes, the javascript file loads incorrectly, because the yarn and application compile javscript files at the same time, lead to wrong compile files. Please change somethings at `app/javascript/packs/application.js` (EX. add console.log), then save and reload the pages. (Note: it still works well on production).
+- Sometimes, the javascript file loads incorrectly, because the yarn and application compile javscript files at the same time, lead to wrong compile files. Please change somethings at `app/javascript/packs/application.js` (EX. add console.log), then save and reload the pages. (Note: it still works well on production environment).
 
 - In the development environment, I use `Mailcatcher` as an SMTP server that catches messages sent to it to display in a web interface. Besides, we can use `postfix` for forwarding emails.
 
-- The `config/master.key` must be not pushed into Github because of security reasons. But I still pushed because it does not have any critical info and it will easy to check.
+- The `config/master.key` must be not pushed into repo because of security reasons. But I still pushed because it does not have any critical info and it will easy to check.
 
 <!-- SCREENSHOTS -->
 ## VI. Screenshots
@@ -151,6 +151,6 @@ http://toidang.dev.local:1080/
 <!-- CONTACT -->
 ## V. Contact
 
-Tới Đặng - [@toidang92](https://github.com/toidang92) - toidang92@gmail.com
+Tới Đặng - [@toidang92](https://github.com/toidang92) - toidang92\Agmaildotcom
 
 Project Link: [Order System](https://github.com/toidang92/order-list)
