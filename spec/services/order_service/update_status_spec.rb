@@ -6,6 +6,12 @@ RSpec.describe OrderService::UpdateStatus, type: :service do
   end
 
   describe "update_status" do
+    it "update empty status" do
+      response = OrderService::UpdateStatus.call(order: @order, status: "")
+      expect(response.success?).to eq(false)
+      expect(response.errors).to eq("Select a status!")
+    end
+
     it "update same status" do
       response = OrderService::UpdateStatus.call(order: @order, status: @order.status)
       expect(response.success?).to eq(false)
