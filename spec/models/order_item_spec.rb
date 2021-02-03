@@ -6,7 +6,7 @@ RSpec.describe OrderItem, type: :model do
 
   describe 'associations' do
     it do
-      should belong_to(:order).class_name('Order')
+      should belong_to(:order).class_name('Order').counter_cache(:order_line_count)
     end
 
     it do
