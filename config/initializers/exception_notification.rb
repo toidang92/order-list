@@ -17,7 +17,7 @@ ExceptionNotification.configure do |config|
   # Email notifier sends notifications by email.
   config.add_notifier :email, {
     email_prefix:         "[ERROR] ",
-    sender_address:       %{"Notifier" <no-reply@fb-tool.com>},
-    exception_recipients: ENV['EXCEPTION_EMAILS']
+    sender_address:       %{"Notifier" <no-reply@toidang.xyz>},
+    exception_recipients: 'toidang92@gmail.com'
   }
 end
