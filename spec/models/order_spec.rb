@@ -18,12 +18,19 @@ RSpec.describe Order, type: :model do
   end
 
   describe 'validations' do
-    %i[payment_amount].each do |column|
-      it { should validate_presence_of(column) }
-      it { should validate_numericality_of(column).is_greater_than(0) }
-    end
-
     it { should validate_uniqueness_of(:order_id).ignoring_case_sensitivity }
     it { should have_db_index(:order_id).unique(true) }
+  end
+
+  describe '#validate_order_items' do
+    it "have order_items" do
+      order = FactoryBot.create(:order, :with_order_item_products)
+      expect(order.valid?).to be_truthy
+    end
+
+    it "not order_items" do
+      order = FactoryBot.create(:order)
+      expect(order.valid?).to be_falsey
+    end
   end
 end

@@ -8,14 +8,17 @@ class Order < ApplicationRecord
     completed:  5,
   }, _default: :order_new
 
-  validates :payment_amount, presence: true
-  validates :payment_amount, numericality: { greater_than: 0 }
+  validate :validate_order_items
   validates_uniqueness_of :order_id, case_sensitive: false
 
   belongs_to :orderer, class_name: 'User', foreign_key: 'user_id', inverse_of: :orders
   has_many :order_items, dependent: :delete_all
 
   before_create :generate_order_id
+
+  def validate_order_items
+    errors.add(:order_items, "least at 1 order item") if order_items.size.zero?
+  end
 
   def status_name
     self.class.human_enum_name(:status, status)

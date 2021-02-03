@@ -1,28 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+```
+/etc/hosts
+127.0.0.1    toidang.dev.local
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-bundle exec rake db:create RAILS_ENV=test
-bundle exec rake db:schema:load RAILS_ENV=test
+```
+cp config/database.yml.example config/database.yml
+cp config/application.yml.example config/application.yml
+docker-compose up app
+```
