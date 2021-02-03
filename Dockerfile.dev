@@ -2,8 +2,8 @@ FROM ruby:2.7.2
 
 RUN apt-get update -qq && apt-get install -y --no-install-recommends --no-install-suggests curl bzip2 build-essential libssl-dev libreadline-dev zlib1g-dev
 
-RUN apt remove cmdtest
-RUN apt remove yarn
+RUN apt-get remove cmdtest
+RUN apt-get remove yarn
 
 RUN curl https://deb.nodesource.com/setup_14.x | bash
 RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
